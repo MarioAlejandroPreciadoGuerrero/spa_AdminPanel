@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Nueva Reservación Manual - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Crear Reservación Manual</h2>
+    </div>
+
+    <div class="card">
+        <form th:action="@{/admin/reservaciones/guardar}" method="post" class="form-stack">
+            <div class="form-group">
+                <label for="clienteId">Cliente</label>
+                <select id="clienteId" name="clienteId" required>
+                    <option th:each="cli : ${clientes}" th:value="${cli.id}" th:text="${cli.nombre + ' - ' + cli.telefono}">Cliente</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="servicioId">Servicio o Espacio</label>
+                <select id="servicioId" name="servicioId" required>
+                    <option th:each="serv : ${servicios}" th:value="${serv.id}" th:text="${serv.nombre}">Servicio</option>
+                </select>
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="fecha">Fecha de la cita</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora">Hora disponible</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Confirmar y Agendar</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

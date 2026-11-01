@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Gestión de Servicios - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Crear Servicio o Espacio</h2>
+    </div>
+
+    <div class="card">
+        <form th:action="@{/admin/servicios/guardar}" method="post" class="form-stack">
+            <div class="form-group">
+                <label for="nombre">Nombre del servicio o espacio</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ej. Masaje relajante, Consulta médica" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea id="descripcion" name="descripcion" rows="3" required></textarea>
+            </div>
+            <div class="grid-2-cols">
+                <div class="form-group">
+                    <label for="duracion">Duración estimada (minutos)</label>
+                    <input type="number" id="duracion" name="duracion" placeholder="60" required>
+                </div>
+                <div class="form-group">
+                    <label for="costo">Costo ($ MXN)</label>
+                    <input type="number" step="0.01" id="costo" name="costo" placeholder="500.00" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-primary">Registrar Servicio</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Registro - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="auth-wrapper">
+    <div class="card auth-card">
+        <div class="section-banner">
+            <h2>Crear Cuenta</h2>
+        </div>
+        <form th:action="@{/registro}" method="post" class="form-stack">
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-primary">Registrarse</button>
+        </form>
+        <p class="auth-footer">
+            ¿Ya tienes cuenta? <a th:href="@{/login}" class="link-accent">Inicia sesión</a>
+        </p>
+    </div>
+</section>
+</body>
+</html>

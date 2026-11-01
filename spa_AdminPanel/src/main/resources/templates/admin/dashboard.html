@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Resumen de Ocupación - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Resumen de Ocupación</h2>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <span class="metric-value" th:text="${porcentajeOcupacion != null ? porcentajeOcupacion + '%' : '78%'}">78%</span>
+            <span class="metric-label">Horarios Ocupados</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value" th:text="${totalCanceladas != null ? totalCanceladas : '5'}">5</span>
+            <span class="metric-label">Reservaciones Canceladas</span>
+        </div>
+        <div class="metric-card">
+            <span class="metric-value" th:text="${totalConfirmadas != null ? totalConfirmadas : '42'}">42</span>
+            <span class="metric-label">Citas Confirmadas</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="card-title">Servicios Más Solicitados en el Período</h3>
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Servicio o Espacio</th>
+                    <th>Total de Reservaciones</th>
+                    <th>Porcentaje de Demanda</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="servTop : ${serviciosPopulares}">
+                    <td th:text="${servTop.nombre}">Tratamiento Facial</td>
+                    <td th:text="${servTop.totalReservas}">18</td>
+                    <td th:text="${servTop.porcentaje + '%'}">45%</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

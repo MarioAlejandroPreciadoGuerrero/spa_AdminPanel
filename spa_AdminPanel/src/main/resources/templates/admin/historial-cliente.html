@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Historial de Clientes - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Historial por Cliente</h2>
+    </div>
+
+    <div class="card">
+        <form method="get" th:action="@{/admin/clientes}" class="filter-bar">
+            <div class="form-group filter-grow">
+                <label for="busqueda">Buscar cliente</label>
+                <input type="text" id="busqueda" name="busqueda" placeholder="Nombre, teléfono o correo...">
+            </div>
+            <button type="submit" class="btn-primary">Buscar</button>
+        </form>
+
+        <div th:if="${clienteSeleccionado != null}">
+            <h3 class="card-title" th:text="${'Reservaciones de: ' + clienteSeleccionado.nombre}">Reservaciones</h3>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Fecha y Hora</th>
+                        <th>Servicio</th>
+                        <th>Costo</th>
+                        <th>Estado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="hist : ${historialReservaciones}">
+                        <td th:text="${hist.fechaHora}">12/09/2026 11:00</td>
+                        <td th:text="${hist.servicioNombre}">Masaje Relajante</td>
+                        <td th:text="${'$' + hist.costo}">$500.00</td>
+                        <td><span class="badge" th:text="${hist.estado}">Completada</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

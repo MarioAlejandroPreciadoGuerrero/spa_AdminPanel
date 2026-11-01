@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Agenda de Reservaciones - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Agenda del Día y Semana</h2>
+    </div>
+
+    <div class="card">
+        <form method="get" th:action="@{/admin/agenda}" class="filter-bar">
+            <div class="form-group">
+                <label for="vista">Vista</label>
+                <select id="vista" name="vista">
+                    <option value="dia">Agenda del Día</option>
+                    <option value="semana">Agenda de la Semana</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha base</label>
+                <input type="date" id="fecha" name="fecha">
+            </div>
+            <button type="submit" class="btn-primary">Consultar</button>
+        </form>
+
+        <div class="table-responsive">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Fecha y Hora</th>
+                    <th>Servicio</th>
+                    <th>Cliente</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="res : ${reservaciones}">
+                    <td th:text="${res.fechaHora}">10/10/2026 09:00</td>
+                    <td th:text="${res.servicioNombre}">Tratamiento Facial</td>
+                    <td th:text="${res.clienteNombre}">María López</td>
+                    <td>
+                        <span class="badge" th:text="${res.estado}">Pendiente</span>
+                    </td>
+                    <td class="action-buttons">
+                        <form th:action="@{/admin/reservaciones/confirmar/{id}(id=${res.id})}" method="post">
+                            <button type="submit" class="btn-confirm">Confirmar</button>
+                        </form>
+                        <form th:action="@{/admin/reservaciones/cancelar/{id}(id=${res.id})}" method="post">
+                            <button type="submit" class="btn-cancel">Cancelar</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

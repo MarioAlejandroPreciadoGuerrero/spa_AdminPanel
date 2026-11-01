@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layouts/layout :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Horarios y Bloqueos - Spa Sowa Ta'a</title>
+</head>
+<body>
+<section class="admin-view">
+    <div class="section-banner">
+        <h2>Configuración de Horarios y Bloqueos</h2>
+    </div>
+
+    <div class="grid-2-cols">
+        <div class="card">
+            <h3 class="card-title">Configurar Horarios Disponibles</h3>
+            <form th:action="@{/admin/horarios/guardar}" method="post" class="form-stack">
+                <div class="form-group">
+                    <label for="servicioId">Servicio o Espacio</label>
+                    <select id="servicioId" name="servicioId" required>
+                        <option th:each="serv : ${servicios}" th:value="${serv.id}" th:text="${serv.nombre}">Masaje</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dias">Días disponibles</label>
+                    <input type="text" id="dias" name="dias" placeholder="Ej. Lunes a Viernes" required>
+                </div>
+                <div class="grid-2-cols">
+                    <div class="form-group">
+                        <label for="horaInicio">Hora inicio</label>
+                        <input type="time" id="horaInicio" name="horaInicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="horaFin">Hora fin</label>
+                        <input type="time" id="horaFin" name="horaFin" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="intervalo">Intervalo (minutos)</label>
+                    <input type="number" id="intervalo" name="intervalo" value="60" required>
+                </div>
+                <button type="submit" class="btn-primary">Guardar Horario</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3 class="card-title">Bloquear Fechas o Rangos</h3>
+            <form th:action="@{/admin/horarios/bloquear}" method="post" class="form-stack">
+                <div class="form-group">
+                    <label for="motivo">Motivo del bloqueo</label>
+                    <input type="text" id="motivo" name="motivo" placeholder="Vacaciones, mantenimiento..." required>
+                </div>
+                <div class="grid-2-cols">
+                    <div class="form-group">
+                        <label for="fechaInicio">Fecha inicio</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaFin">Fecha fin</label>
+                        <input type="date" id="fechaFin" name="fechaFin" required>
+                    </div>
+                </div>
+                <div class="grid-2-cols">
+                    <div class="form-group">
+                        <label for="bloqueoHoraInicio">Hora inicio (opcional)</label>
+                        <input type="time" id="bloqueoHoraInicio" name="horaInicio">
+                    </div>
+                    <div class="form-group">
+                        <label for="bloqueoHoraFin">Hora fin (opcional)</label>
+                        <input type="time" id="bloqueoHoraFin" name="horaFin">
+                    </div>
+                </div>
+                <button type="submit" class="btn-outline">Bloquear Rango</button>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

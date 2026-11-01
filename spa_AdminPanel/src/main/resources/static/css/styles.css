@@ -1,0 +1,351 @@
+/*
+   1. VARIABLES DE COLOR
+ */
+:root {
+    --header-mint: #94d2c9;
+    --banner-teal: #5a8682;
+    --card-mint: #8ecbc2;
+    --btn-cyan: #38b6c4;
+    --btn-cyan-hover: #2c97a3;
+    --bg-main: #f8fbfa;
+    --surface-card: #ffffff;
+    --text-main: #2b3e3c;
+    --text-muted: #607875;
+    --border-color: #d3e5e2;
+    --danger-color: #d9534f;
+    --success-color: #2e8b57;
+}
+
+body.theme-dark {
+    --header-mint: #355c5a;
+    --banner-teal: #203837;
+    --card-mint: #294746;
+    --btn-cyan: #3ec1d3;
+    --btn-cyan-hover: #53d1e2;
+    --bg-main: #141414;
+    --surface-card: #1f2424;
+    --text-main: #e6f0ef;
+    --text-muted: #9ab0ae;
+    --border-color: #2f4241;
+}
+
+/*
+   2. ESTRUCTURA GLOBAL
+*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+}
+
+/*
+   3. CABECERA Y NAVEGACIÓN
+*/
+.site-header {
+    background-color: var(--header-mint);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.brand-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.admin-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.admin-nav a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.admin-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+/*
+   4. BANNERS, TARJETAS Y CONTENEDORES
+*/
+.section-banner {
+    background-color: var(--banner-teal);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.section-banner h2 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.card {
+    background-color: var(--surface-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.card-title {
+    color: var(--banner-teal);
+    margin-bottom: 1.25rem;
+    font-size: 1.15rem;
+}
+
+body.theme-dark .card-title {
+    color: var(--btn-cyan);
+}
+
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+    .grid-2-cols {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/*
+   5. FORMULARIOS Y BOTONES
+*/
+.form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.btn-primary,
+.btn-outline,
+.btn-confirm,
+.btn-cancel {
+    padding: 0.7rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--btn-cyan);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--btn-cyan-hover);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid var(--banner-teal);
+    color: var(--banner-teal);
+}
+
+body.theme-dark .btn-outline {
+    border-color: var(--btn-cyan);
+    color: var(--btn-cyan);
+}
+
+.btn-confirm {
+    background-color: var(--success-color);
+    color: #ffffff;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+}
+
+.btn-cancel {
+    background-color: var(--danger-color);
+    color: #ffffff;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.85rem;
+}
+
+/*
+   6. LOGIN Y REGISTRO
+*/
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.25rem;
+    font-size: 0.9rem;
+}
+
+.link-accent {
+    color: var(--btn-cyan);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/*
+   7. TABLAS, FILTROS Y MÉTRICAS
+*/
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.filter-grow {
+    flex: 1;
+    min-width: 220px;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.85rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.data-table th {
+    background-color: var(--card-mint);
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: var(--card-mint);
+    color: var(--text-main);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background-color: var(--card-mint);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.metric-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.metric-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/*
+   8. PIE DE PÁGINA
+*/
+.site-footer {
+    background-color: var(--banner-teal);
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
